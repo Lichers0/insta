@@ -140,6 +140,10 @@ GEM
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
+    pry (0.13.1-java)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+      spoon (~> 0.0)
     pry-byebug (3.9.0)
       byebug (~> 11.0)
       pry (~> 0.13.0)
@@ -224,6 +228,8 @@ GEM
       sprockets-rails
       tilt
     semantic_range (3.0.0)
+    spoon (0.0.6)
+      ffi
     spring (2.1.1)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
