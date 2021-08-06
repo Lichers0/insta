@@ -3,8 +3,11 @@ Rails.application.routes.draw do
 
   scope module: :web do
     resources :posts, only: %i[new create show]
-    # resources :post, except: %i[destroy update]
     resources :users, only: :index do
+      resources :relationships, only: %i[create destroy], shallow: true
+      scope module: :users do
+        resources :posts, only: %i[index], shallow: true
+      end
     end
     root to: "users#index"
   end

@@ -3,12 +3,12 @@ table
   tr
     th user
     th buttons
-  tr
-    - @users.each do |user|
+  - @users.each do |user|
+    tr
       td = user.email
       - unless current_user.follow?(user)
         td = link_to "follow", user_relationships_path(user), method: :post
       - else
         td = link_to "unfollow" , relationship_path(user), method: :delete
-      td = link_to "feeds", ""
+      td = link_to "feeds", user_posts_path(user)
 

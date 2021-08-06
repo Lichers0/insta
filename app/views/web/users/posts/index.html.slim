@@ -1,0 +1,8 @@
+h1 Feeds
+- if @posts.empty?
+  h2 Empty
+table
+  - @posts.each do |post|
+    tr
+      td
+        = link_to image_tag(post.image.blob, width: "300", border: 1), ""
