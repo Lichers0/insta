@@ -1,0 +1,5 @@
+class Web::Users::PostsController < ApplicationController
+  def index
+    @posts = Post.where(user_id: params[:user_id])
+  end
+end
