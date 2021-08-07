@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :targets, through: :relationships_as_follower
   has_many :relationships_as_target, class_name: "Relationship", foreign_key: "target_id", dependent: :destroy
   has_many :followers, through: :relationships_as_target
+  has_many :comments, dependent: :destroy
 
   def follow_user(user_id)
     relationships_as_follower.create(target_id: user_id)
