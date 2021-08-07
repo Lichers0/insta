@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :relationships_as_target, class_name: "Relationship", foreign_key: "target_id", dependent: :destroy
   has_many :followers, through: :relationships_as_target
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   def follow_user(user_id)
     relationships_as_follower.create(target_id: user_id)
@@ -17,7 +18,7 @@ class User < ApplicationRecord
     relationships_as_follower.find_by(target_id: user_id).destroy
   end
 
-  def follow?(user)
-    !!relationships_as_follower.find_by(target: user)
+  def followed?(user)
+    relationships_as_follower.find_by(target: user).present?
   end
 end

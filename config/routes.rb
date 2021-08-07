@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       scope module: :users do
         resources :posts, only: %i[index show], shallow: true do
           resources :comments, only: %i[create destroy], shallow: true
+          resources :likes, only: %i[create destroy], shallow: true
         end
       end
     end
