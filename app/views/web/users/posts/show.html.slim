@@ -1,0 +1,19 @@
+h1 Post
+div
+  = render "shared/errors", resource: @comment
+div
+  = image_tag(@post.image.blob, width: "300", border: 1)
+div
+  = @post.body
+- if @post.comments.any?
+  ul
+    - @post.comments.each do |comment|
+        li
+          = comment.body
+
+div
+  = form_with model: [@post, @comment] do |f|
+    = f.label :body, "Comment"
+    = f.text_area :body
+    br
+    = f.submit "Add comment"
