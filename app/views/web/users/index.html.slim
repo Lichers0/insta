@@ -6,7 +6,7 @@ table
   - @users.each do |user|
     tr
       td = user.email
-      - unless current_user.follow?(user)
+      - unless current_user.followed?(user)
         td = link_to "follow", user_relationships_path(user), method: :post
       - else
         td = link_to "unfollow" , relationship_path(user), method: :delete
