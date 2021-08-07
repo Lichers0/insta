@@ -15,4 +15,5 @@ RSpec.describe User, type: :model do
   end
   it { is_expected.to have_many(:followers).through(:relationships_as_target) }
   it { is_expected.to have_many(:comments).dependent(:destroy) }
+  it { is_expected.to have_many(:likes).dependent(:destroy) }
 end

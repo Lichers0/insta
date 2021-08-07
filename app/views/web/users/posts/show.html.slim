@@ -5,6 +5,13 @@ div
   = image_tag(@post.image.blob, width: "300", border: 1)
 div
   = @post.body
+div
+  = "#{@post.likes_count} like(s)"
+  br
+  - if @post.liked?(current_user)
+    = link_to "Unlike", like_path(@post), method: :delete
+  - else
+    = link_to "Like", post_likes_path(@post), method: :post
 - if @post.comments.any?
   ul
     - @post.comments.each do |comment|
