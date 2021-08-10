@@ -28,6 +28,7 @@ group :development, :test do
   gem "pry-byebug"
   gem "pry-rails"
   gem "rspec-rails"
+  gem "selenium-webdriver"
 end
 
 group :development do

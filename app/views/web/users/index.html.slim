@@ -1,14 +1,41 @@
-h1 Users
-table
-  tr
-    th user
-    th buttons
-  - @users.each do |user|
-    tr
-      td = user.email
-      - unless current_user.followed?(user)
-        td = link_to "follow", user_relationships_path(user), method: :post
+h5 Users list
+.row
+  .text-left.col-3 style="border-bottom: 1px solid black"
+    q-toolbar-title User
+  .text-left.col-1 style="border-bottom: 1px solid black"
+  .text-left.col-1 style="border-bottom: 1px solid black"
+- @users.each do |user|
+  .row
+    .text-left.col-3
+      q-toolbar-title
+        = user.email
+    .text-center.col-1
+      - if current_user.followed?(user)
+        q-btn[
+          stretch 
+          flat 
+          icon="person_remove"
+          type="a"
+          href="#{relationship_path(user)}"
+          data-method="delete"
+          class="q-mr-sm"
+        ]
       - else
-        td = link_to "unfollow" , relationship_path(user), method: :delete
-      td = link_to "feeds", user_posts_path(user)
-
+        q-btn[
+          stretch 
+          flat 
+          icon="person_add"
+          type="a"
+          href="#{user_relationships_path(user)}"
+          data-method="post"
+          class="q-mr-sm"
+        ]
+    .text-center.col-1
+        q-btn[
+          stretch 
+          flat 
+          icon="photo_library"
+          type="a"
+          href="#{user_posts_path(user)}"
+          class="q-mr-sm"
+        ]

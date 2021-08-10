@@ -1,11 +1,53 @@
 <div>
-  <% if user_signed_in? %>
-    <%= "Welcome, #{current_user.email}" %>
-    <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
-  <% else %>
-    <%= link_to 'Log in', new_user_session_path %>
-    <%= link_to 'Sign up', new_user_registration_path %>
-  <% end %>
-  <%= link_to 'User list', users_path %>
-  <%= link_to 'Post image', new_post_path %>
+    <div class="q-pa-md">
+    <q-toolbar class="bg-primary text-white q-my-md">
+      <q-btn stretch flat label="Users list" type="a" href="<%= users_path %>" class="q-m-sm" ></q-btn>
+      <q-separator dark vertical inset></q-separator>
+      <q-btn stretch flat label="Create new post" type="a" href="<%= new_post_path %>" class="q-m-sm" ></q-btn>
+      <% if user_signed_in? %>
+        <q-separator dark vertical inset></q-separator>
+        <q-btn stretch flat label="My images" type="a" href="<%= user_posts_path(current_user) %>" class="q-m-sm" ></q-btn>
+      <% end %>
+      <q-space></q-space>
+      <% if user_signed_in? %>
+        <q-toolbar-title shrink><%= "Welcome, #{current_user.email}" %></q-toolbar-title>
+        <q-separator
+          dark
+          vertical
+          inset
+        ></q-separator>
+        <q-btn 
+          stretch 
+          flat 
+          icon="logout"
+          type="a"
+          href="<%= destroy_user_session_path %>"
+          data-method="delete"
+          class="q-mr-sm"
+          ></q-btn>
+      <% else %>
+        <q-btn 
+          stretch 
+          flat 
+          icon="login"
+          type="a"
+          href="<%= new_user_session_path %>"
+          class="q-mr-sm"
+          ></q-btn>
+        <q-separator
+          dark
+          vertical
+          inset
+        ></q-separator>
+        <q-btn 
+          stretch 
+          flat 
+          icon="person_add"
+          type="a"
+          href="<%= new_user_registration_path %>"
+          class="q-mr-sm"
+          ></q-btn>
+      <% end %>
+    </q-toolbar>
+  </div>
 </div>

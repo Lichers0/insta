@@ -11,9 +11,16 @@
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
-     <p class="notice"><%= notice %></p>
-     <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div id="app">
+      <%= render "shared/navbar" %>
+      <app-notify notice="<%= notice.to_s %>" alert="<%= alert.to_s %>"></app-notify>
+      <div class="q-pa-md row justify-center">
+        <div class="col-6">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+
+    <%= javascript_pack_tag 'app_vue' %>
   </body>
 </html>
