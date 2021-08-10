@@ -6,8 +6,7 @@ class Web::PostsController < ApplicationController
   def create
     @post = current_user.posts.create(post_params)
     if @post.save
-      # redirect_to @post, notice: "Post created."
-      render :new, notice: "Post created."
+      render json: { link: post_path(@post) }
     else
       render :new
     end

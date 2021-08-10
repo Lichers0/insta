@@ -1,6 +1,7 @@
 <template>
-  <div id="app">
+  <div>
     <p>{{ message }}</p>
+    <q-input outlined v-model="text" label="Outlined" />
   </div>
 </template>
 
@@ -8,7 +9,8 @@
 export default {
   data: function () {
     return {
-      message: "Hello Vue!"
+      message: "Hello Vue!",
+      text: "ttt"
     }
   }
 }

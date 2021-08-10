@@ -10,6 +10,8 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
+  validates :email, presence: true
+
   def follow_user(user_id)
     relationships_as_follower.create(target_id: user_id)
   end

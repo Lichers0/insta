@@ -1,26 +1,52 @@
-h1 Post
+h4 Post
 div
   = render "shared/errors", resource: @comment
 div
-  = image_tag(@post.image.blob, width: "300", border: 1)
-div
-  = @post.body
-div
-  = "#{@post.likes_count} like(s)"
-  br
-  - if @post.liked?(current_user)
-    = link_to "Unlike", like_path(@post), method: :delete
-  - else
-    = link_to "Like", post_likes_path(@post), method: :post
+  q-img[
+    style="width: 420px;"
+    src="#{rails_blob_path(@post.image)}"
+    :ratio="1"
+  ]
+.row
+  .col-4.q-pa-md
+    = @post.body
+.row.q-pa-md
+  .col-3.text-left.q-pa-md.self-center
+    = "#{@post.likes_count} like(s)"
+  .col-1.self-center
+    - if @post.liked?(current_user)
+      q-btn[
+        round
+        flat 
+        size="xl"
+        icon="favorite"
+        color="red"
+        type="a"
+        href="#{like_path(@post)}"
+        data-method="delete"
+        class="q-mr-sm"
+      ]
+    - else
+      q-btn[
+        round
+        flat 
+        size="xl"
+        icon="favorite_border"
+        type="a"
+        href="#{post_likes_path(@post)}"
+        data-method="post"
+        class="q-mr-sm"
+      ]
 - if @post.comments.any?
-  ul
-    - @post.comments.each do |comment|
-        li
-          = comment.body
+  - @post.comments.each do |comment|
+    .row.q-pa-md
+      .col-4 style="border-bottom: 1px solid black"
+        = comment.body
 
-div
-  = form_with model: [@post, @comment] do |f|
-    = f.label :body, "Comment"
-    = f.text_area :body
-    br
-    = f.submit "Add comment"
+= form_with model: [@post, @comment] do |f|
+  .row.q-pa-md
+    .col-3.self-center
+      = f.text_field :body, style: "width: 100%;"
+    .col-1.text-right.self-center
+      <q-btn type="submit" color="primary" icon="send" flat/>
+      / = f.submit "Add comment"
