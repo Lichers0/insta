@@ -2,6 +2,9 @@
 
 Тестовое. Аналог Instagram
 
+RoR, VueJS (Quasar)
+Devise, slim, rspac, capybara
+
 ## **Истории**
 * A user can sign up for an account
 * A user can log in to their account
