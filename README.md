@@ -3,6 +3,7 @@
 Тестовое. Аналог Instagram
 
 RoR, VueJS (Quasar)
+
 Devise, slim, rspac, capybara
 
 ## **Истории**
